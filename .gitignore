@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+*.log
+.idea/
+.vscode/
+playwright-report/
+test-results/
+.vscod
+.env
+*.pyd
+*.db
+*.sqlite3
+allure-results
+allure-report

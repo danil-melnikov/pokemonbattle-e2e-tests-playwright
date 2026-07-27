@@ -1,0 +1,10 @@
+TRAINER_ID = "64834"
+SITE_URL = "https://pokemonbattle.ru"        # ← переименовал
+PREMIUM_URL = f"{SITE_URL}/premium"
+
+CARD_NUMBER = "4111 1111 1111 1111"
+CARD_DATE = "12/27"
+CARD_CVV = "125"
+CARD_NAME = "Morgan Freeman"
+SECURE_CODE = "56456"
+PREMIUM_DAYS = "30"
