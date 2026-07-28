@@ -35,7 +35,7 @@ def disable_premium(api_session):
     response = api_session.get(BASE_URL + "/me")
     body = response.json()["data"][0]
 
-    if body.get("premium_active"):
+    if body.get("is_premium"):
         response = api_session.post(BASE_URL_LAVKA + "/cancel_premium")
         assert response.status_code == 200
 

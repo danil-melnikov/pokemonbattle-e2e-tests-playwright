@@ -1,5 +1,5 @@
 TRAINER_ID = "64834"
-SITE_URL = "https://pokemonbattle.ru"        # ← переименовал
+SITE_URL = "https://pokemonbattle.ru"
 PREMIUM_URL = f"{SITE_URL}/premium"
 
 CARD_NUMBER = "4111 1111 1111 1111"

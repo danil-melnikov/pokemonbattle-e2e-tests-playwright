@@ -12,7 +12,7 @@ def load_env():
 
 
 @pytest.fixture(scope="session")
-def launch_browser_args():
+def browser_type_launch_args():
     return {
         "headless": False,
         "slow_mo": int(os.getenv("SLOW_MO", 0)),
@@ -52,7 +52,7 @@ def pytest_addoption(parser):
 def pytest_sessionfinish(session):
     if session.config.getoption("--html-report"):
         subprocess.call([
-            r"C:\Program Files\allure-2.35.1\bin\allure.bat",
+            "allure",
             "generate",
             "--clean",
             "--single-file",

@@ -2,7 +2,6 @@ import allure
 import pytest
 
 from playwright.sync_api import expect
-from data.api_constants import TRAINER_ID, SITE_URL, PREMIUM_URL
 from data.api_constants import (
     TRAINER_ID, SITE_URL, PREMIUM_URL,
     CARD_NUMBER, CARD_DATE, CARD_CVV, CARD_NAME, SECURE_CODE, PREMIUM_DAYS
@@ -67,14 +66,12 @@ def test_buy_premium(authorized_page, disable_premium, cancel_premium):
         page.get_by_role("button", name="Перейти к оплате").click()
 
     with allure.step("Заполняем данные карты"):
-        page.get_by_role("textbox", name="0000 0000 0000").fill(CARD_NUMBER)
-        page.get_by_role("textbox", name="/00").fill(CARD_DATE)
-        page.get_by_role("textbox", name="000", exact=True).fill(CARD_CVV)
-        page.get_by_role("textbox", name="GERMAN DOLNIKOV").fill(CARD_NAME)
+        page.get_by_role("textbox", name="0000 0000 0000").type(CARD_NUMBER)
+        page.get_by_role("textbox", name="/00").type(CARD_DATE)
+        page.get_by_role("textbox", name="000", exact=True).type(CARD_CVV)
+        page.get_by_role("textbox", name="GERMAN DOLNIKOV").type(CARD_NAME)
 
     with allure.step("Нажимаем 'Оплатить"):
-        page.get_by_role("button", name="Оплатить").click()
-        page.wait_for_timeout(1000)
         page.get_by_role("button", name="Оплатить").click()
 
     with allure.step("Вводим secure code из СМС"):
