@@ -5,6 +5,9 @@ import pytest
 from dotenv import load_dotenv
 from playwright.sync_api import expect
 
+from pages.login_page import LoginPage
+from pages.main_page import MainPage
+
 
 @pytest.fixture(scope="session", autouse=True)
 def load_env():
@@ -51,22 +54,19 @@ def pytest_addoption(parser):
 
 def pytest_sessionfinish(session):
     if session.config.getoption("--html-report"):
-        subprocess.call([
-            "allure",
-            "generate",
-            "--clean",
-            "--single-file",
-            "allure-results"
-        ])
+        subprocess.call(
+            "allure generate --clean --single-file allure-results",
+            shell=True
+        )
 
 
 @pytest.fixture
 def authorized_page(page):
-    page.goto("https://pokemonbattle.ru/")
-    page.wait_for_url("https://pokemonbattle.ru/login")
-    page.get_by_role("textbox", name="Почта").fill(os.getenv("LOGIN"))
-    page.get_by_role("textbox", name="Пароль").fill(os.getenv("PASSWORD"))
-    page.get_by_role("button", name="Войти").click()
-    expect(page.get_by_role("link", name="ID 64834 логотип")).to_be_visible()
-    page.wait_for_url("https://pokemonbattle.ru/")
+    login_page = LoginPage(page)
+    login_page.open("https://pokemonbattle.ru")
+    login_page.should_be_login_page()
+    login_page.login()
+    main_page = MainPage(page)
+    main_page.should_be_main_page()
+    expect(main_page.trainer_badge).to_be_visible()
     return page
