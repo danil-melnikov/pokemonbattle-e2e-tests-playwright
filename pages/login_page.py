@@ -29,6 +29,10 @@ class LoginPage(BasePage):
     def version_number(self):
         return self.page.locator(".style_1_caption_16_500")
 
+    @property
+    def login_form(self):
+        return self.page.locator(".style_1_popup_white_in_auth")
+
     def open_page(self):
         self.page.goto(self.URL)
 

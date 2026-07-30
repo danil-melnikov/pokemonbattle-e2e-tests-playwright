@@ -1,4 +1,6 @@
 from playwright.sync_api import expect
+
+from data.api_constants import PREMIUM_DAYS
 from pages.base_page import BasePage
 
 
@@ -49,6 +51,26 @@ class PremiumPage(BasePage):
     def cancelled_message(self):
         return self.page.get_by_text("Вы отменили подписку :(")
 
+    @property
+    def premium_cost(self):
+        return self.page.locator(".k_skidka_premium")
+
+    @property
+    def payment_block(self):
+        return self.page.locator(".auth__wrap.k_input_premium")
+
+    @property
+    def payment_form(self):
+        return self.page.locator(".payment_form_card_form")
+
+    @property
+    def card_error_message(self):
+        return self.page.get_by_text("Неверный номер карты")
+
+    @property
+    def card_date_error(self):
+        return self.page.get_by_text("Неверный срок")
+
     def open_page(self):
         self.page.goto(self.URL)
 
@@ -81,3 +103,33 @@ class PremiumPage(BasePage):
 
     def should_be_cancelled(self):
         expect(self.cancelled_message).to_be_visible()
+
+    def set_days(self, days: str):
+        self.days_input.click()
+        self.days_input.fill(days)
+        self.page.locator(".k_page_main_premium").click()
+
+    def wait_for_cost_visible(self):
+        expect(self.premium_cost).to_have_attribute("style", "")
+
+    def take_payment_block_screenshot(self):
+        return self.payment_block.screenshot()
+
+    def fill_card_number(self, number: str):
+        self.card_number_input.click()
+        self.card_number_input.type(number)
+        self.page.locator(".payment_form_card_form").click()
+
+    def fill_card_date(self, date: str):
+        self.card_date_input.click()
+        self.card_date_input.type(date)
+        self.page.locator(".payment_form_card_form").click()
+
+    def wait_for_card_number_error_visible(self):
+        expect(self.card_error_message).to_be_visible()
+
+    def wait_for_card_date_error_visible(self):
+        expect(self.card_date_error).to_be_visible()
+
+    def take_payment_form_screenshot(self):
+        return self.payment_form.screenshot()
