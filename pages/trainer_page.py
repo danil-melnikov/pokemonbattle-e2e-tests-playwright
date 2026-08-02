@@ -30,11 +30,19 @@ class TrainerPage(BasePage):
     def sliders(self):
         return self.page.locator(".single_page_body_content_inner_top_list_attr_one_slide")
 
+    @property
+    def trainer_badge(self):
+        return self.page.get_by_role("link", name=f"ID {TRAINER_ID} логотип")
+
+    @property
+    def premium_button(self):
+        return self.page.get_by_text("Pokemon Premium")
+
     def open_page(self):
         self.page.goto(self.URL)
 
-    def open_from_main(self, page):
-        page.get_by_role("link", name=f"ID {TRAINER_ID} логотип").click()
+    def open_from_main(self):
+        self.trainer_badge.click()
 
     def should_be_trainer_page(self):
         expect(self.page).to_have_url(self.URL)

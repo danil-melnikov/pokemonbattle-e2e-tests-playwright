@@ -63,10 +63,9 @@ def pytest_sessionfinish(session):
 @pytest.fixture
 def authorized_page(page):
     login_page = LoginPage(page)
-    login_page.open("https://pokemonbattle.ru")
+    login_page.open_page()
     login_page.should_be_login_page()
     login_page.login()
     main_page = MainPage(page)
     main_page.should_be_main_page()
-    expect(main_page.trainer_badge).to_be_visible()
     return page

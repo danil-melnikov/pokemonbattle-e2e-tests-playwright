@@ -10,11 +10,10 @@ from data.api_constants import (
 @pytest.mark.smoke
 @allure.title("Переход на страницу тренера с главной страницы")
 def test_go_to_trainer_from_main(authorized_page):
-    page = authorized_page
-    trainer_page = TrainerPage(page)
+    trainer_page = TrainerPage(authorized_page)
 
     with allure.step("Кликаем по ID тренера в шапке"):
-        trainer_page.open_from_main(page)
+        trainer_page.open_from_main()
 
     with allure.step("Проверяем, что перешли на страницу тренера"):
         trainer_page.should_be_trainer_page()
@@ -28,11 +27,11 @@ def test_go_to_premium_from_trainer(authorized_page):
     premium_page = PremiumPage(page)
 
     with allure.step("Переходим на страницу тренера"):
-        trainer_page.open_from_main(page)
+        trainer_page.open_from_main()
         trainer_page.should_be_trainer_page()
 
     with allure.step("Кликаем по кнопке 'Премиум'"):
-        page.get_by_text("Pokemon Premium").click()
+        trainer_page.premium_button.click()
 
     with allure.step("Проверяем, что перешли на страницу Премиума"):
         premium_page.should_be_premium_page()
@@ -41,11 +40,10 @@ def test_go_to_premium_from_trainer(authorized_page):
 @pytest.mark.regress
 @allure.title("Проверка активности ачивки «Начало большого пути»")
 def test_achievement_big_journey_start(authorized_page):
-    page = authorized_page
-    trainer_page = TrainerPage(page)
+    trainer_page = TrainerPage(authorized_page)
 
     with allure.step("Переходим на страницу тренера"):
-        trainer_page.open_from_main(page)
+        trainer_page.open_from_main()
         trainer_page.should_be_trainer_page()
 
     with allure.step("Проверяем, что ачивка видна"):
