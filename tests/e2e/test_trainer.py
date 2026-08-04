@@ -8,6 +8,7 @@ from data.api_constants import (
 
 
 @pytest.mark.smoke
+@pytest.mark.ui
 @allure.title("Переход на страницу тренера с главной страницы")
 def test_go_to_trainer_from_main(authorized_page):
     trainer_page = TrainerPage(authorized_page)
@@ -20,6 +21,7 @@ def test_go_to_trainer_from_main(authorized_page):
 
 
 @pytest.mark.regress
+@pytest.mark.ui
 @allure.title("Переход со страницы тренера в раздел покупки Премиума")
 def test_go_to_premium_from_trainer(authorized_page):
     page = authorized_page
@@ -51,6 +53,7 @@ def test_achievement_big_journey_start(authorized_page):
 
 
 @pytest.mark.regress
+@pytest.mark.ui
 @allure.title("Успешная покупка Премиума")
 def test_buy_premium(authorized_page, disable_premium, cancel_premium):
     page = authorized_page

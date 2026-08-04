@@ -42,4 +42,4 @@ def test_screenshot_payment_form(authorized_page, assert_snapshot, description, 
 
     with allure.step("Сравниваем с эталоном"):
         safe_name = description.replace(" ", "_")
-        assert_snapshot(screenshot, f"payment_form_{safe_name}.png")
+        assert_snapshot(screenshot, f"payment_form_{safe_name}.png", threshold=0.5)

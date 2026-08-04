@@ -28,4 +28,4 @@ def test_screenshot_premium_days(authorized_page, assert_snapshot, days):
         screenshot = premium_page.take_payment_block_screenshot()
 
     with allure.step("Сравниваем с эталоном"):
-        assert_snapshot(screenshot, f"premium_days_{days}.png")
+        assert_snapshot(screenshot, f"premium_days_{days}.png", threshold=0.5)

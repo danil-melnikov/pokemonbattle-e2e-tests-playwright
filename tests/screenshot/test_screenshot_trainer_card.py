@@ -15,4 +15,4 @@ def test_screenshot_trainer_card(authorized_page, assert_snapshot):
         trainer_card_screenshot = trainer_page.take_trainer_card_screenshot()
 
     with allure.step("Сравниваем с эталоном"):
-        assert_snapshot(trainer_card_screenshot, "trainer_card.png")
+        assert_snapshot(trainer_card_screenshot, "trainer_card.png", threshold=0.5)

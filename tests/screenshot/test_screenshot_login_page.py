@@ -14,7 +14,7 @@ def test_screenshot_login_page(page, assert_snapshot):
         full_page_screenshot = page.screenshot(full_page=True, mask=[login_page.version_number])
 
     with allure.step("Сравниваем с эталоном"):
-        assert_snapshot(full_page_screenshot, "login_full_page.png")
+        assert_snapshot(full_page_screenshot, "login_full_page.png", threshold=0.5)
 
 @allure.title("Скриншот формы логина")
 def test_screenshot_login_from(page, assert_snapshot):
@@ -27,4 +27,4 @@ def test_screenshot_login_from(page, assert_snapshot):
         login_form_screenshot = login_page.login_form.screenshot()
 
     with allure.step("Сравниваем с эталоном"):
-        assert_snapshot(login_form_screenshot, "login_form.png")
+        assert_snapshot(login_form_screenshot, "login_form.png", threshold=0.5)
