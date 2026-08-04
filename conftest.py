@@ -3,7 +3,6 @@ import subprocess
 import pytest
 
 from dotenv import load_dotenv
-from playwright.sync_api import expect
 
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
@@ -17,7 +16,7 @@ def load_env():
 @pytest.fixture(scope="session")
 def browser_type_launch_args():
     return {
-        "headless": False,
+        "headless": True,
         "slow_mo": int(os.getenv("SLOW_MO", 0)),
     }
 

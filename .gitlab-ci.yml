@@ -12,6 +12,7 @@ flake8:
   before_script:
     - python --version
     - pip install --upgrade pip
+    - pip install -r requirements.txt
     - pip install flake8
   script:
     - echo "Запуск flake8"
@@ -26,6 +27,7 @@ pylint:
   before_script:
     - python --version
     - pip install --upgrade pip
+    - pip install -r requirements.txt
     - pip install pylint
   script:
     - echo "Запуск pylint"
@@ -45,6 +47,7 @@ ruff:
   before_script:
     - python --version
     - pip install --upgrade pip
+    - pip install -r requirements.txt
     - pip install ruff
   script:
     - echo "Запуск ruff"
@@ -59,7 +62,7 @@ tests:
     - echo "Установка пакетов"
     - apt-get update -y
     - apt-get install -y --no-install-recommends default-jre-headless nodejs npm
-    - npm install -g allure --unsafe-perm=true
+    - npm install -g allure-commandline --unsafe-perm=true
     - echo "Установка зависимостей"
     - pip install --upgrade pip
     - pip install -r requirements.txt
