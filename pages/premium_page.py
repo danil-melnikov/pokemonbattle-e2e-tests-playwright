@@ -1,6 +1,5 @@
 from playwright.sync_api import expect
 
-from data.api_constants import PREMIUM_DAYS
 from pages.base_page import BasePage
 
 

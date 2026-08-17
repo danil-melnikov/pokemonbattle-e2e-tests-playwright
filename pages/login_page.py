@@ -47,11 +47,11 @@ class LoginPage(BasePage):
         expect(self.page).to_have_url(self.URL)
 
     def should_show_version(self):
-            with self.page.expect_response(lambda r: "/v2/get_options" in r.url):
-                    self.open_page()
-                    expect(self.version_label).to_be_visible()
+        with self.page.expect_response(lambda r: "/v2/get_options" in r.url):
+            self.open_page()
+            expect(self.version_label).to_be_visible()
 
     def should_be_version(self, version: str):
-            with self.page.expect_response(lambda r: "/v2/get_options" in r.url and r.status == 200):
-                    self.open_page()
-                    expect(self.version_number).to_contain_text(version)
+        with self.page.expect_response(lambda r: "/v2/get_options" in r.url and r.status == 200):
+            self.open_page()
+            expect(self.version_number).to_contain_text(version)

@@ -1,8 +1,7 @@
-import time
 import json
+import time
+
 import allure
-
-
 from requests import Session
 
 
